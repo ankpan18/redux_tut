@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import { useSelector,useDispatch } from 'react-redux';
+import { incNumber,decNumber } from './actions/index';
 
 function App() {
+  const myState=useSelector((state)=>state.changeNumber);
+  const dispatch=useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+    <div className="container">
 
-export default App;
+    <h1>Increment / Decrement Counter</h1>
+    <h4>using Redux Functionality</h4>
+
+    <div className="quant">
+      <a className="quant_minus" title="Decrement"
+      onClick={()=>dispatch(decNumber(2))}><span> - </span></a>
+      <input name="quant" type="text" className="quant_input" value={myState} readOnly={true}/>
+      <a className='quant_plus' title='Increment'
+      onClick={()=>dispatch(incNumber(4))}><span> + </span></a>
+
+    </div>
+    </div>
+    </>
+  )
+} 
+
+export default App
